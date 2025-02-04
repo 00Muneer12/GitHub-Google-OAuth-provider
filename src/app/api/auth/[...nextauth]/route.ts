@@ -15,18 +15,10 @@ export const authOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      // Log token and session for debugging
-      console.log("Received Token in session callback:", token);
-      console.log("Received Session in session callback:", session);
-
       if (token?.sub) {
-        console.log("User ID found in token, adding to session:", token.sub);
-        session.user.id = token.sub;  // Adding user ID to session
-      } else {
-        console.log("Token does not have a 'sub' field (user ID)!");
+        session.user.id = token.sub;
       }
-
-      return session;  // Return session after modifications
+      return session;
     },
   },
 };
